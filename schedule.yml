@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mycron
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - image: ubuntu
+              name: cont-1
+              command: ["/bin/bash", "-c", "sudo apt update -y; sleep 20"]
+          restartPolicy: Never
+
